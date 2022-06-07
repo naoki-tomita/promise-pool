@@ -18,6 +18,7 @@ class Context {
     this.count -= 1;
   }
 }
+
 Deno.test("should run concurrency 1", async () => {
   const p = new PromisePool({ concurrency: 1 });
   const context = new Context();
@@ -57,4 +58,18 @@ Deno.test("should run concurrency 2", async () => {
   ]);
   assertEquals(context.max, 2);
   assertEquals(context.count, 0);
+});
+
+Deno.test("should call event on empty", async () => {
+  const p = new PromisePool({ concurrency: 1 });
+
+  async function task() {
+    await sleep();
+  }
+
+  const awaiter = new Promise<void>(ok => p.onEmpty = () => ok());
+  p.open(() => task());
+  p.open(() => task());
+  p.open(() => task());
+  await awaiter;
 });
