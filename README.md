@@ -5,7 +5,7 @@ PromisePool creates a pool that limits the number of concurrent JavaScript opera
 ## how to use
 
 ```typescript
-import { PromisePool } from "https://deno.land/x/promise_pool@v0.0.2/index.ts";
+import { PromisePool } from "https://deno.land/x/promise_pool@0.0.3/index.ts";
 
 const pool = new PromisePool({ concurrency: 2 /* default 1 */ });
 
