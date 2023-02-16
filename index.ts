@@ -1,5 +1,6 @@
 type AsyncTask<T = void> = () => Promise<T>;
 type Task<T> = AsyncTask<T>;
+// deno-lint-ignore no-explicit-any
 type DispatchableTask<T = any> = Task<T> & { onComplete: (result: T) => void; onError: (error: Error) => void; };
 
 export class PromisePool {

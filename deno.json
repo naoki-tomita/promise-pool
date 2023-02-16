@@ -1,0 +1,6 @@
+{
+  "tasks": {
+    "build": "deno run --allow-env --allow-write --allow-read --allow-net --allow-run scripts/build.ts",
+    "publish": "cd npm && yarn publish"
+  }
+}
